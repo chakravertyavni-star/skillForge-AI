@@ -19,6 +19,53 @@ export const skillCategories = [
   { id: 'CAT-BEHAVIOURAL', name: 'Behavioural' },
 ];
 
+/**
+ * Competency bands used to describe a 0–100 score in words.
+ * Every skill in the framework is measured on this same scale.
+ */
+export const competencyLevels = [
+  {
+    id: 'LVL-AWARE',
+    label: 'Awareness',
+    range: '0 – 39',
+    min: 0,
+    max: 39,
+    description: 'Knows the concepts exist but cannot apply them unsupported.',
+  },
+  {
+    id: 'LVL-DEV',
+    label: 'Developing',
+    range: '40 – 59',
+    min: 40,
+    max: 59,
+    description: 'Can complete routine tasks with guidance and review.',
+  },
+  {
+    id: 'LVL-PROF',
+    label: 'Proficient',
+    range: '60 – 74',
+    min: 60,
+    max: 74,
+    description: 'Works independently on standard tasks for the role.',
+  },
+  {
+    id: 'LVL-ADV',
+    label: 'Advanced',
+    range: '75 – 89',
+    min: 75,
+    max: 89,
+    description: 'Handles complex cases and reviews the work of others.',
+  },
+  {
+    id: 'LVL-EXPERT',
+    label: 'Expert',
+    range: '90 – 100',
+    min: 90,
+    max: 100,
+    description: 'Sets standards and provides organisation-wide guidance.',
+  },
+];
+
 export const skills = [
   { id: 'SKL-STAT', name: 'Statistics', categoryId: 'CAT-ANALYTICS' },
   { id: 'SKL-PY', name: 'Python', categoryId: 'CAT-TECH' },

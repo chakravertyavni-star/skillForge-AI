@@ -274,13 +274,35 @@ textarea {
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease,
+    box-shadow 0.15s ease;
   white-space: nowrap;
 }
 
 .btn:hover {
   background: var(--brand-strong);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
   text-decoration: none;
+}
+
+/* Presses down so a click always registers visually. */
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.btn:disabled {
+  transform: none;
+  box-shadow: none;
+}
+
+.btn svg {
+  transition: transform 0.18s ease;
+}
+
+.btn:hover svg {
+  transform: translateX(2px);
 }
 
 .btn:disabled {
@@ -382,9 +404,22 @@ textarea {
 .progress > span {
   display: block;
   height: 100%;
+  width: var(--bar-target, 0%);
   border-radius: 999px;
   background: var(--brand);
-  transition: width 0.4s ease;
+  animation: bar-grow 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes bar-grow {
+  from {
+    width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress > span {
+    animation: none;
+  }
 }
 
 /* ---------- Form controls ---------- */
@@ -539,6 +574,36 @@ textarea {
   background: var(--surface-alt);
   color: var(--muted);
   font-size: 0.8rem;
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn,
+  .btn svg {
+    transition: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
 }
 
 .sr-only {

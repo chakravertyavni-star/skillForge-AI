@@ -4,6 +4,7 @@ import StatCard from '../components/common/StatCard';
 import Badge from '../components/common/Badge';
 import Icon from '../components/common/Icon';
 import MockNotice from '../components/common/MockNotice';
+import Reveal from '../components/common/Reveal';
 import LineChart from '../components/charts/LineChart';
 import BarChart from '../components/charts/BarChart';
 import ProgressBar from '../components/common/ProgressBar';
@@ -74,14 +75,16 @@ function ProgressPage() {
         />
       </div>
 
-      <Card
-        title="Overall competency growth"
-        subtitle="Composite index across role-relevant skills"
-      >
-        <LineChart labels={competencyTrend.labels} series={competencyTrend.series} unit="%" />
-      </Card>
+      <Reveal>
+        <Card
+          title="Overall competency growth"
+          subtitle="Composite index across role-relevant skills"
+        >
+          <LineChart labels={competencyTrend.labels} series={competencyTrend.series} unit="%" />
+        </Card>
+      </Reveal>
 
-      <div className="progress-grid">
+      <Reveal className="progress-grid">
         <Card title="Skill-wise trend" subtitle="Four skills tracked month by month">
           <LineChart labels={skillTrend.labels} series={skillTrend.series} unit="%" />
         </Card>
@@ -89,9 +92,9 @@ function ProgressPage() {
         <Card title="Weekly learning activity" subtitle="Hours spent on courses">
           <BarChart data={activityData} unit=" h" color="#0f766e" />
         </Card>
-      </div>
+      </Reveal>
 
-      <div className="progress-grid">
+      <Reveal className="progress-grid">
         <Card title="Skill improvement" subtitle="February compared with August">
           <ul className="improvement-list">
             {skillImprovement.map((item) => (
@@ -154,9 +157,9 @@ function ProgressPage() {
             </table>
           </div>
         </Card>
-      </div>
+      </Reveal>
 
-      <div className="progress-grid">
+      <Reveal className="progress-grid">
         <Card title="Completed courses" subtitle={`${completedCourses.length} finished`}>
           <ul className="completed-list">
             {completedCourses.map((course) => (
@@ -199,7 +202,7 @@ function ProgressPage() {
             ))}
           </ul>
         </Card>
-      </div>
+      </Reveal>
     </>
   );
 }

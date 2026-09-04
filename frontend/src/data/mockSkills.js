@@ -66,17 +66,81 @@ export const competencyLevels = [
   },
 ];
 
+/**
+ * `short` is the label used on the compact skill map.
+ * `meaning` is the plain-language explanation revealed on hover.
+ */
 export const skills = [
-  { id: 'SKL-STAT', name: 'Statistics', categoryId: 'CAT-ANALYTICS' },
-  { id: 'SKL-PY', name: 'Python', categoryId: 'CAT-TECH' },
-  { id: 'SKL-DA', name: 'Data Analytics', categoryId: 'CAT-ANALYTICS' },
-  { id: 'SKL-ML', name: 'Machine Learning', categoryId: 'CAT-ANALYTICS' },
-  { id: 'SKL-GIS', name: 'GIS', categoryId: 'CAT-TECH' },
-  { id: 'SKL-CLOUD', name: 'Cloud Computing', categoryId: 'CAT-TECH' },
-  { id: 'SKL-GOV', name: 'Digital Governance', categoryId: 'CAT-DIGITAL' },
-  { id: 'SKL-VIZ', name: 'Data Visualization', categoryId: 'CAT-ANALYTICS' },
-  { id: 'SKL-COMM', name: 'Communication', categoryId: 'CAT-BEHAVIOURAL' },
-  { id: 'SKL-MGMT', name: 'Management & Behavioural', categoryId: 'CAT-BEHAVIOURAL' },
+  {
+    id: 'SKL-STAT',
+    name: 'Statistics',
+    short: 'Statistics',
+    categoryId: 'CAT-ANALYTICS',
+    meaning: 'Designing samples, estimating values and judging how reliable a number is.',
+  },
+  {
+    id: 'SKL-PY',
+    name: 'Python',
+    short: 'Python',
+    categoryId: 'CAT-TECH',
+    meaning: 'Writing code to clean, reshape and tabulate datasets instead of doing it by hand.',
+  },
+  {
+    id: 'SKL-DA',
+    name: 'Data Analytics',
+    short: 'Analytics',
+    categoryId: 'CAT-ANALYTICS',
+    meaning: 'Exploring data to find patterns and explaining what those patterns actually mean.',
+  },
+  {
+    id: 'SKL-ML',
+    name: 'Machine Learning',
+    short: 'ML',
+    categoryId: 'CAT-ANALYTICS',
+    meaning: 'Training models that learn patterns from data to predict or classify new cases.',
+  },
+  {
+    id: 'SKL-GIS',
+    name: 'GIS',
+    short: 'GIS',
+    categoryId: 'CAT-TECH',
+    meaning: 'Working with location data — maps, coordinates and geo-tagged survey records.',
+  },
+  {
+    id: 'SKL-CLOUD',
+    name: 'Cloud Computing',
+    short: 'Cloud',
+    categoryId: 'CAT-TECH',
+    meaning: 'Using hosted storage and computing instead of a single local machine.',
+  },
+  {
+    id: 'SKL-GOV',
+    name: 'Digital Governance',
+    short: 'Governance',
+    categoryId: 'CAT-DIGITAL',
+    meaning: 'Knowing the data standards, metadata rules and release policy of official statistics.',
+  },
+  {
+    id: 'SKL-VIZ',
+    name: 'Data Visualization',
+    short: 'Visualization',
+    categoryId: 'CAT-ANALYTICS',
+    meaning: 'Choosing the right chart so a finding is read correctly and quickly.',
+  },
+  {
+    id: 'SKL-COMM',
+    name: 'Communication',
+    short: 'Communication',
+    categoryId: 'CAT-BEHAVIOURAL',
+    meaning: 'Writing and presenting findings clearly for readers who are not statisticians.',
+  },
+  {
+    id: 'SKL-MGMT',
+    name: 'Management & Behavioural',
+    short: 'Management',
+    categoryId: 'CAT-BEHAVIOURAL',
+    meaning: 'Coordinating people, planning work and handling responsibility within a team.',
+  },
 ];
 
 /**
@@ -173,6 +237,7 @@ export const skillGapAnalysis = [
     trend: 'improving',
     trendDelta: 6,
     lastAssessedOn: '2026-08-21',
+    nextAction: 'Start Machine Learning Fundamentals, then re-assess.',
     recommendedResourceIds: ['CRS-ML-101', 'CRS-ML-APPLIED'],
   },
   {
@@ -188,6 +253,7 @@ export const skillGapAnalysis = [
     trend: 'improving',
     trendDelta: 7,
     lastAssessedOn: '2026-06-18',
+    nextAction: 'Finish the remaining 6 modules of Python for Data Analysis.',
     recommendedResourceIds: ['CRS-PY-DATA', 'CRS-PY-CLEAN'],
   },
   {
@@ -203,6 +269,7 @@ export const skillGapAnalysis = [
     trend: 'improving',
     trendDelta: 4,
     lastAssessedOn: '2026-08-21',
+    nextAction: 'Take Applied Data Analytics to close the last 12 points.',
     recommendedResourceIds: ['CRS-DA-APPLIED'],
   },
   {
@@ -218,6 +285,7 @@ export const skillGapAnalysis = [
     trend: 'steady',
     trendDelta: 0,
     lastAssessedOn: '2026-05-04',
+    nextAction: 'Work through Data Visualization and Statistical Storytelling.',
     recommendedResourceIds: ['CRS-VIZ-STORY'],
   },
   {
@@ -233,6 +301,7 @@ export const skillGapAnalysis = [
     trend: 'steady',
     trendDelta: 0,
     lastAssessedOn: '2026-03-12',
+    nextAction: 'A single 4-hour cloud orientation is enough here.',
     recommendedResourceIds: ['CRS-CLOUD-INTRO'],
   },
   {
@@ -247,6 +316,7 @@ export const skillGapAnalysis = [
     trend: 'steady',
     trendDelta: 1,
     lastAssessedOn: '2026-03-12',
+    nextAction: 'Low priority — the short GIS Basics workshop will clear it.',
     recommendedResourceIds: ['CRS-GIS-BASIC'],
   },
   {
@@ -261,6 +331,7 @@ export const skillGapAnalysis = [
     trend: 'improving',
     trendDelta: 3,
     lastAssessedOn: '2026-08-21',
+    nextAction: 'No action needed. Keep this level with periodic re-assessment.',
     recommendedResourceIds: [],
   },
   {
@@ -275,6 +346,7 @@ export const skillGapAnalysis = [
     trend: 'steady',
     trendDelta: 2,
     lastAssessedOn: '2026-05-04',
+    nextAction: 'No action needed. This is above your role target.',
     recommendedResourceIds: [],
   },
   {
@@ -289,6 +361,7 @@ export const skillGapAnalysis = [
     trend: 'steady',
     trendDelta: 0,
     lastAssessedOn: '2026-05-04',
+    nextAction: 'No action needed. Revisit if you move to a supervisory role.',
     recommendedResourceIds: [],
   },
   {
@@ -303,6 +376,7 @@ export const skillGapAnalysis = [
     trend: 'improving',
     trendDelta: 5,
     lastAssessedOn: '2026-05-04',
+    nextAction: 'No action needed. Requirement already met.',
     recommendedResourceIds: [],
   },
 ];

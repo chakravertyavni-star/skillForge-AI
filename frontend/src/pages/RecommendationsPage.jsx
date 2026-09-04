@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
 import Icon from '../components/common/Icon';
-import MockNotice from '../components/common/MockNotice';
+import Reveal from '../components/common/Reveal';
 import EmptyState from '../components/common/EmptyState';
+import ExpandableCard from '../components/common/ExpandableCard';
 import RecommendationCard from '../components/recommendations/RecommendationCard';
 import { recommendations, recommendationSummary } from '../data/mockRecommendations';
 import { formatDate } from '../utils/format';
@@ -22,43 +22,19 @@ function RecommendationsPage() {
   }, [filter]);
 
   return (
-    <>
-      <PageHeader
-        eyebrow="Personalised recommendations"
-        title="Your learning path"
-        description={recommendationSummary.headline}
-        actions={
-          <button type="button" className="btn btn-secondary" disabled>
-            Refresh recommendations
-          </button>
-        }
-      />
+    <div className="recs">
+      <Reveal as="header" className="recs__head">
+        <div>
+          <p className="eyebrow">Your learning path</p>
+          <h1>What to learn next</h1>
+          <p className="small muted recs__lead">{recommendationSummary.headline}</p>
+        </div>
+        <span className="recs__stamp tiny muted">
+          <Icon name="clock" size={13} /> Updated {formatDate(recommendationSummary.generatedOn)}
+        </span>
+      </Reveal>
 
-      <MockNotice>
-        These recommendations and their explanations are sample data. No recommendation
-        algorithm runs in this build — the reasoning shown is fixed text.
-      </MockNotice>
-
-      <Card
-        title="What this path is based on"
-        subtitle={`Last updated ${formatDate(recommendationSummary.generatedOn)}`}
-      >
-        <ul className="basis-list">
-          {recommendationSummary.basedOn.map((item) => (
-            <li key={item}>
-              <Icon name="layers" size={15} />
-              <span className="small">{item}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="tiny muted" style={{ marginTop: 14 }}>
-          In the completed platform these inputs are sent to the AI/ML service, which returns a
-          ranked list with an explanation for each item. The layout on this page already matches
-          that response shape.
-        </p>
-      </Card>
-
-      <div className="skills-filter">
+      <Reveal className="skills-filter">
         {priorityFilters.map((item) => (
           <button
             key={item}
@@ -66,7 +42,7 @@ function RecommendationsPage() {
             className={`chip ${filter === item ? 'is-active' : ''}`}
             onClick={() => setFilter(item)}
           >
-            {item === 'all' ? 'All recommendations' : `${item} priority`}
+            {item === 'all' ? 'All' : item}
             <span className="chip__count">
               {item === 'all'
                 ? recommendations.length
@@ -74,7 +50,7 @@ function RecommendationsPage() {
             </span>
           </button>
         ))}
-      </div>
+      </Reveal>
 
       {visible.length === 0 ? (
         <Card>
@@ -84,17 +60,36 @@ function RecommendationsPage() {
           />
         </Card>
       ) : (
-        <div className="grid grid-2">
-          {visible.map((item) => (
-            <RecommendationCard
-              key={item.id}
-              item={item}
-              onStart={() => navigate('/app/learning')}
-            />
+        <div className="recs__grid">
+          {visible.map((item, index) => (
+            <Reveal key={item.id} delay={Math.min(index, 5) * 45}>
+              <RecommendationCard item={item} onStart={() => navigate('/app/learning')} />
+            </Reveal>
           ))}
         </div>
       )}
-    </>
+
+      <Reveal>
+        <ExpandableCard
+          title="How this path was built"
+          meta="Five inputs feed the ranking"
+          moreLabel="Show inputs"
+        >
+          <ul className="basis-list">
+            {recommendationSummary.basedOn.map((item) => (
+              <li key={item}>
+                <Icon name="layers" size={15} />
+                <span className="small">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="tiny muted">
+            The reasoning shown on each card is sample text. No recommendation algorithm runs in
+            this build.
+          </p>
+        </ExpandableCard>
+      </Reveal>
+    </div>
   );
 }
 

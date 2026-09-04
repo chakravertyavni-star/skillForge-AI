@@ -8,6 +8,7 @@ import SearchInput from '../components/common/SearchInput';
 import MockNotice from '../components/common/MockNotice';
 import EmptyState from '../components/common/EmptyState';
 import ProgressBar from '../components/common/ProgressBar';
+import Reveal from '../components/common/Reveal';
 import CourseCard from '../components/learning/CourseCard';
 import {
   courses as courseSeed,
@@ -197,13 +198,10 @@ function LearningPage() {
         </Card>
       ) : (
         <div className="grid grid-3">
-          {visible.map((course) => (
-            <CourseCard
-              key={course.id}
-              course={course}
-              onOpen={setOpenCourse}
-              onAdvance={handleAdvance}
-            />
+          {visible.map((course, index) => (
+            <Reveal key={course.id} delay={Math.min(index, 5) * 45}>
+              <CourseCard course={course} onOpen={setOpenCourse} onAdvance={handleAdvance} />
+            </Reveal>
           ))}
         </div>
       )}

@@ -1,117 +1,155 @@
-.dash-split {
+.dash {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 18px;
-  align-items: start;
+  gap: 20px;
 }
 
-@media (max-width: 1100px) {
-  .dash-split {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
+/* ---------- Hero ---------- */
 
-.dash-competency {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 26px;
-  align-items: center;
-}
-
-@media (max-width: 620px) {
-  .dash-competency {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-  }
-
-  .dash-competency__skills {
-    width: 100%;
-  }
-}
-
-.dash-assessment {
+.dash__hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.dash__intro h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.025em;
+  margin: 4px 0 6px;
+}
+
+.dash__line {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.dash__line strong {
+  color: var(--critical);
+  font-size: 1.05rem;
+}
+
+.dash__score {
+  display: flex;
+  align-items: center;
   gap: 14px;
 }
 
-.dash-assessment__score {
-  font-size: 1.7rem;
+/* Conic ring avoids another chart component for a single value. */
+.dash__score-ring {
+  --pct: 0;
+  position: relative;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--brand) calc(var(--pct) * 1%),
+    var(--border) calc(var(--pct) * 1%)
+  );
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.dash__score-ring::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.dash__score-value {
+  position: relative;
+  z-index: 1;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-strong);
   letter-spacing: -0.02em;
 }
 
-.dash-history {
+.dash__score-meta {
   display: grid;
-  gap: 9px;
+  gap: 3px;
 }
 
-.dash-history li {
+.dash__score-meta .strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dash__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  font-weight: 650;
+  color: var(--met);
+}
+
+/* ---------- Card row ---------- */
+
+.dash__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .dash__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.dash__history {
+  display: grid;
+  gap: 8px;
+}
+
+.dash__history li {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
 }
 
-.dash-rec {
+.dash__history li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* ---------- Trend ---------- */
+
+.dash__trend {
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px;
-  display: grid;
-  gap: 7px;
-  align-content: start;
-  background: var(--surface-alt);
+  border-radius: 18px;
+  padding: 20px 22px 16px;
+  box-shadow: var(--shadow-sm);
 }
 
-.dash-rec__reason {
-  line-height: 1.5;
+.dash__trend-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
 }
 
-.dash-rec__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: 600;
-  text-decoration: none;
+.dash__trend-head h2 {
+  font-size: 1.1rem;
+  margin-top: 3px;
 }
 
-.dash-rec__link:hover {
-  text-decoration: underline;
-}
-
-.quick-action {
+.dash__note {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  text-decoration: none;
-  color: inherit;
-  background: var(--surface);
-}
-
-.quick-action:hover {
-  border-color: var(--brand);
-  background: var(--brand-soft);
-  text-decoration: none;
-}
-
-.quick-action__icon {
-  display: inline-flex;
-  align-items: center;
+  gap: 6px;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
-  background: var(--brand-soft);
-  color: var(--brand);
-  flex-shrink: 0;
-}
-
-.quick-action strong,
-.quick-action span > span {
-  display: block;
+  padding-top: 4px;
 }

@@ -1,45 +1,102 @@
-.legend {
+.skills-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: center;
+  gap: 20px;
 }
 
-@media (max-width: 860px) {
-  .legend {
+.skills-page__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.skills-page__head h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.025em;
+  margin: 4px 0 6px;
+}
+
+.skills-page__lead {
+  max-width: 52ch;
+}
+
+.skills-page__stats {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.skills-page__stats span {
+  display: grid;
+  gap: 0;
+  font-size: 0.74rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 650;
+}
+
+.skills-page__stats strong {
+  font-size: 1.5rem;
+  color: var(--text-strong);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.skills-page__filters {
+  position: sticky;
+  top: calc(var(--topbar-h) + 8px);
+  z-index: 10;
+}
+
+.skills-page__filters .skills-filter {
+  padding: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+  max-width: 100%;
+}
+
+.skills-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .skills-page__grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
-.legend__example {
+.bands {
   display: grid;
   gap: 10px;
 }
 
-.legend__labels {
+.bands li {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
   gap: 12px;
-  flex-wrap: wrap;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-alt);
 }
 
-.legend__key {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 9px;
-}
-
-.legend__key li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.legend__swatch {
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
+.bands__range {
   flex-shrink: 0;
+  min-width: 62px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--brand);
+  padding-top: 2px;
 }
 
 td.is-current-role {

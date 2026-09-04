@@ -1,35 +1,8 @@
-.rec-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  box-shadow: var(--shadow-sm);
-  display: grid;
-  gap: 13px;
-  align-content: start;
-}
-
-.rec-card__head {
+.rec-card__target {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
-}
-
-.rec-card__match {
-  display: grid;
-  justify-items: center;
-  padding: 8px 12px;
-  border-radius: var(--radius);
-  background: var(--brand-soft);
-  flex-shrink: 0;
-}
-
-.rec-card__match-value {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--brand);
-  line-height: 1.1;
+  gap: 10px;
 }
 
 .rec-card__reason {
@@ -37,6 +10,11 @@
   border-left: 3px solid var(--brand);
   background: var(--surface-alt);
   border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.rec-card__reason .eyebrow {
+  color: var(--brand);
+  margin-bottom: 3px;
 }
 
 .rec-card__reason .small {
@@ -67,10 +45,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: wrap;
   padding-top: 12px;
   border-top: 1px solid var(--border);
 }
 
-.rec-card__foot svg {
-  vertical-align: -2px;
+.rec-card__match {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brand);
 }

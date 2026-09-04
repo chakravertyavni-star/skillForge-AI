@@ -1,4 +1,8 @@
-/** Horizontal progress bar with an optional label row. */
+/**
+ * Horizontal progress bar.
+ * The fill grows from zero via a CSS animation, so progress reads as movement
+ * rather than appearing fully formed.
+ */
 function ProgressBar({ value, max = 100, color, label, valueLabel, height = 8 }) {
   const percent = Math.max(0, Math.min(100, (value / max) * 100));
 
@@ -19,7 +23,7 @@ function ProgressBar({ value, max = 100, color, label, valueLabel, height = 8 })
         aria-valuemax={100}
         aria-label={label || 'progress'}
       >
-        <span style={{ width: `${percent}%`, background: color }} />
+        <span style={{ '--bar-target': `${percent}%`, background: color }} />
       </div>
     </div>
   );

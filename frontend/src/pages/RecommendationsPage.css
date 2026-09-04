@@ -1,3 +1,45 @@
+.recs {
+  display: grid;
+  gap: 18px;
+}
+
+.recs__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.recs__head h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.025em;
+  margin: 4px 0 6px;
+}
+
+.recs__lead {
+  max-width: 58ch;
+}
+
+.recs__stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.recs__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .recs__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .basis-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

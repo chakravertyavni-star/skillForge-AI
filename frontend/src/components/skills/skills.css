@@ -1,51 +1,42 @@
-.skill-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  box-shadow: var(--shadow-sm);
-  display: grid;
-  gap: 12px;
-  align-content: start;
-}
-
-.skill-card__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
+.skill-card__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .skill-card__numbers {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 10px 12px;
-  background: var(--surface-alt);
-  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
-.skill-card__numbers > div {
+.skill-card__numbers > span {
   display: grid;
-  gap: 1px;
+  gap: 0;
+}
+
+.skill-card__numbers > span:last-child {
+  margin-left: auto;
+  text-align: right;
 }
 
 .skill-card__numbers strong {
   font-size: 1.15rem;
   color: var(--text-strong);
   line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
-.skill-card__scale {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: -4px;
+.skill-card__action {
+  padding: 10px 12px;
+  border-left: 3px solid var(--brand);
+  background: var(--brand-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
 }
 
-.skill-card__reason {
-  color: var(--text);
-  line-height: 1.5;
+.skill-card__action .eyebrow {
+  color: var(--brand);
+  margin-bottom: 2px;
 }
 
 .skill-card__foot {
@@ -53,8 +44,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
 }
 
 .skill-card__foot svg {
@@ -101,7 +91,6 @@
 .gap-rank {
   display: grid;
   gap: 10px;
-  counter-reset: rank;
 }
 
 .gap-rank li {

@@ -244,6 +244,12 @@
   gap: 7px;
 }
 
+.hero__skill-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .hero__panel-foot {
   padding-top: 14px;
   border-top: 1px solid var(--border);

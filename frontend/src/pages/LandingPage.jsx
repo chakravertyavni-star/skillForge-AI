@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../components/common/Icon';
+import Reveal from '../components/common/Reveal';
+import InfoHint from '../components/common/InfoHint';
 import ComparisonBar from '../components/charts/ComparisonBar';
 import {
   skillGapAnalysis,
@@ -142,6 +144,11 @@ const aiCapabilities = [
   },
 ];
 
+const skillMeaning = skills.reduce((acc, skill) => {
+  acc[skill.id] = skill.meaning;
+  return acc;
+}, {});
+
 const previewSkills = skillGapAnalysis.slice(0, 4);
 const frameworkSkills = skillGapAnalysis.filter((item) => item.gap > 0).slice(0, 5);
 
@@ -254,7 +261,14 @@ function LandingPage() {
               {previewSkills.map((item) => (
                 <li key={item.skillId}>
                   <div className="row-between">
-                    <span className="small strong">{item.skill}</span>
+                    <span className="small strong hero__skill-name">
+                      {item.skill}
+                      <InfoHint
+                        label={item.skill}
+                        text={skillMeaning[item.skillId]}
+                        align="left"
+                      />
+                    </span>
                     <span className={`badge badge-${priorityTone(item.priority)}`}>
                       {priorityLabels[item.priority]}
                     </span>
@@ -318,7 +332,7 @@ function LandingPage() {
 
           <div className="capability-grid">
             {capabilities.map((item, index) => (
-              <article key={item.title} className="capability">
+              <Reveal key={item.title} delay={index * 70} as="article" className="capability">
                 <div className="capability__top">
                   <span className="capability__icon">
                     <Icon name={item.icon} size={19} />
@@ -337,7 +351,7 @@ function LandingPage() {
                     </li>
                   ))}
                 </ul>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -357,7 +371,7 @@ function LandingPage() {
 
           <ol className="cycle">
             {cycle.map((item, index) => (
-              <li key={item.step}>
+              <Reveal key={item.step} delay={index * 60} as="li">
                 <div className="cycle__marker">
                   <span className="cycle__num">{index + 1}</span>
                   {index < cycle.length - 1 && <span className="cycle__line" aria-hidden="true" />}
@@ -366,7 +380,7 @@ function LandingPage() {
                   <h4>{item.step}</h4>
                   <p className="small muted">{item.text}</p>
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ol>
 
@@ -501,8 +515,8 @@ function LandingPage() {
           </header>
 
           <div className="ai-grid">
-            {aiCapabilities.map((item) => (
-              <article key={item.title} className="ai-card">
+            {aiCapabilities.map((item, index) => (
+              <Reveal key={item.title} delay={index * 70} as="article" className="ai-card">
                 <div className="ai-card__head">
                   <span className="ai-card__icon">
                     <Icon name={item.icon} size={18} />
@@ -527,7 +541,7 @@ function LandingPage() {
                   <p className="eyebrow">Why it stays explainable</p>
                   <p className="small">{item.explainable}</p>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
 

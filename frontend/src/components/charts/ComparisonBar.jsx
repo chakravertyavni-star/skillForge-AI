@@ -1,8 +1,9 @@
 import './charts.css';
 
 /**
- * Shows current competency against the required level on one track,
- * so the size of a gap is visible at a glance.
+ * Shows current competency against the required level on one track.
+ * The fill grows from zero so the size of a gap registers visually rather than
+ * simply appearing.
  */
 function ComparisonBar({ current, required, color = '#1e40af', height = 10 }) {
   const currentPct = Math.max(0, Math.min(100, current));
@@ -13,7 +14,7 @@ function ComparisonBar({ current, required, color = '#1e40af', height = 10 }) {
       <div className="comparison__track" />
       <div
         className="comparison__fill"
-        style={{ width: `${currentPct}%`, background: color }}
+        style={{ '--bar-target': `${currentPct}%`, background: color }}
         title={`Current: ${current}`}
       />
       <div

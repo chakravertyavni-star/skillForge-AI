@@ -1,0 +1,136 @@
+.chart {
+  width: 100%;
+}
+
+.chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.chart__grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.chart__tick {
+  fill: var(--faint);
+  font-size: 11px;
+  text-anchor: end;
+}
+
+.chart__line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.chart__legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+/* ---------- Gauge ---------- */
+
+.gauge {
+  position: relative;
+  display: grid;
+  justify-items: center;
+}
+
+.gauge__center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  height: var(--gauge-h, auto);
+  align-content: center;
+  pointer-events: none;
+  inset: 0;
+}
+
+.gauge__value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  letter-spacing: -0.02em;
+}
+
+.gauge__label {
+  font-size: 0.74rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+
+.gauge__sub {
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ---------- Comparison bar ---------- */
+
+.comparison {
+  position: relative;
+  width: 100%;
+  border-radius: 999px;
+}
+
+.comparison__track {
+  position: absolute;
+  inset: 0;
+  background: #eef1f6;
+  border-radius: 999px;
+}
+
+.comparison__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.comparison__marker {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  background: var(--text-strong);
+  border-radius: 2px;
+  transform: translateX(-1px);
+}
+
+.comparison__marker::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-strong);
+}

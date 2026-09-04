@@ -1,0 +1,26 @@
+.basis-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 760px) {
+  .basis-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.basis-list li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-alt);
+}
+
+.basis-list svg {
+  color: var(--brand);
+  flex-shrink: 0;
+}

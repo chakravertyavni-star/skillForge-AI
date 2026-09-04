@@ -1,0 +1,134 @@
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.skill-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.skill-card__numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--surface-alt);
+  border-radius: var(--radius);
+}
+
+.skill-card__numbers > div {
+  display: grid;
+  gap: 1px;
+}
+
+.skill-card__numbers strong {
+  font-size: 1.15rem;
+  color: var(--text-strong);
+  line-height: 1.2;
+}
+
+.skill-card__scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: -4px;
+}
+
+.skill-card__reason {
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.skill-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.skill-card__foot svg {
+  vertical-align: -2px;
+}
+
+.skill-card__trend.is-improving {
+  color: var(--met);
+  font-weight: 600;
+}
+
+.skill-card__trend.is-steady {
+  color: var(--muted);
+}
+
+/* ---------- Compact list ---------- */
+
+.skill-list {
+  display: grid;
+  gap: 14px;
+}
+
+.skill-list__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.skill-list__name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-strong);
+  text-decoration: none;
+}
+
+.skill-list__name:hover {
+  color: var(--brand);
+}
+
+/* ---------- Priority ranking ---------- */
+
+.gap-rank {
+  display: grid;
+  gap: 10px;
+  counter-reset: rank;
+}
+
+.gap-rank li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.gap-rank__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.gap-rank__body {
+  flex: 1;
+  min-width: 0;
+}

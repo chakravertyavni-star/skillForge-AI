@@ -1,0 +1,18 @@
+.search-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 220px;
+  flex: 1 1 220px;
+}
+
+.search-input > svg {
+  position: absolute;
+  left: 11px;
+  color: var(--faint);
+  pointer-events: none;
+}
+
+.search-input .input {
+  padding-left: 34px;
+}

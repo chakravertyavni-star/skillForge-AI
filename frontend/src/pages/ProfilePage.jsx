@@ -1,14 +1,13 @@
+import { useEffect, useState } from 'react';
 import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
 import Badge from '../components/common/Badge';
 import Icon from '../components/common/Icon';
 import MockNotice from '../components/common/MockNotice';
-import { learner } from '../data/mockLearner';
+import { getLearner } from '../services/api';
 import { roles } from '../data/mockSkills';
 import { formatDate } from '../utils/format';
 import './ProfilePage.css';
-
-const role = roles.find((item) => item.id === learner.roleId);
 
 /** Read-only field row. Editing will be added once the profile API exists. */
 function Field({ label, value }) {
@@ -21,6 +20,44 @@ function Field({ label, value }) {
 }
 
 function ProfilePage() {
+  const [learner, setLearner] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let cancelled = false;
+
+    getLearner()
+      .then((response) => {
+        if (!cancelled) {
+          setLearner(response.data);
+          setError('');
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setError('Could not load learner profile.');
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (loading) {
+    return <p className="small muted">Loading learner profile…</p>;
+  }
+
+  if (error || !learner) {
+    return <p className="small muted">{error || 'Could not load learner profile.'}</p>;
+  }
+
+  const role = roles.find((item) => item.id === learner.roleId);
+
   return (
     <>
       <PageHeader

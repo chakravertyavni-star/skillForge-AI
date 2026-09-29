@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Badge from '../components/common/Badge';
 import Icon from '../components/common/Icon';
@@ -9,7 +10,8 @@ import LineChart from '../components/charts/LineChart';
 import ProgressBar from '../components/common/ProgressBar';
 import JourneyStages from '../components/journey/JourneyStages';
 import SkillJourney from '../components/journey/SkillJourney';
-import { learner, learnerStats } from '../data/mockLearner';
+import { getLearner } from '../services/api';
+import { learnerStats } from '../data/mockLearner';
 import { skillGapAnalysis } from '../data/mockSkills';
 import { recommendations } from '../data/mockRecommendations';
 import { assessmentHistory } from '../data/mockAssessments';
@@ -22,6 +24,50 @@ const latestAttempt = assessmentHistory[assessmentHistory.length - 1];
 const gapCount = skillGapAnalysis.filter((item) => item.gap > 0).length;
 
 function DashboardPage() {
+  const [learner, setLearner] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let cancelled = false;
+
+    getLearner()
+      .then((response) => {
+        if (!cancelled) {
+          setLearner(response.data);
+          setError('');
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setError('Could not load learner profile.');
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="dash">
+        <p className="dash__note tiny muted">Loading learner profile…</p>
+      </div>
+    );
+  }
+
+  if (error || !learner) {
+    return (
+      <div className="dash">
+        <p className="dash__note tiny muted">{error || 'Could not load learner profile.'}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="dash">
       <Reveal as="header" className="dash__hero">
